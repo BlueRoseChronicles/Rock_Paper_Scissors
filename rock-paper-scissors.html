@@ -42,11 +42,12 @@ score.ties = 0;
 
 <script>
 
-    const score = {
+    const score = JSON.parse(localStorage.getItem('score')) || {
         wins: 0,
         losses: 0,
         ties: 0
     };
+
 
     function playGame(playerMove) {
         const computerMove = pickComputerMove();
@@ -90,8 +91,12 @@ score.ties = 0;
         }
 
 
+        localStorage.setItem('score', JSON.stringify(score));
+
+
         alert(`You picked ${playerMove}. Computer picked ${computerMove}. ${result}
 Wins: ${score.wins}, Losess: ${score.losses}, Ties: ${score.ties} `)
+        console.log(score);
     }
 
 
@@ -111,7 +116,9 @@ Wins: ${score.wins}, Losess: ${score.losses}, Ties: ${score.ties} `)
 
         return computerMove;
     }
+
 </script>
 
+<!--localstorage supports only strings-->
 
 </html>
